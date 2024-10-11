@@ -1,0 +1,173 @@
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.asis</groupId>
+	<artifactId>Xero</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Xero</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--<maven.compiler.source>1.8</maven.compiler.source>
+	    <maven.compiler.target>1.8</maven.compiler.target>-->
+		<java.version>1.8</java.version>
+		<junit.version>5.10.2</junit.version>
+		<cucumber.version>7.15.0</cucumber.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
+		<maven.surefire.version>2.22.2</maven.surefire.version>
+
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.17.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version> <!-- or the latest version available -->
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version> <!-- Or the latest version available -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.24</version> <!-- Or the latest version available -->
+		</dependency>
+	</dependencies>
+	<build>
+		<!--<testResources>
+			<testResource>
+				<directory>src/test/resources/Configuration</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>-->
+		<pluginManagement><!-- lock down plugins versions to avoid using Maven
+			defaults (may be moved to parent pom) -->
+			<plugins>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>3.0.0</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>java</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+					<configuration>
+						<systemPropertyVariables>
+							<ato_file_location>${ato_file_location}</ato_file_location>
+							<ato_file_name>${ato_file_name}</ato_file_name>
+							<xero_file_location>${xero_file_location}</xero_file_location>
+							<xero_file_name>${xero_file_name}</xero_file_name>
+
+							<taxation>${taxation}</taxation>
+							<business>${business}</business>
+
+							<userName>${userName}</userName>
+							<password>${password}</password>
+							<securityQuest1>${securityQuest1}</securityQuest1>
+							<securityAns1>${securityAns1}</securityAns1>
+							<securityQuest2>${securityQuest2}</securityQuest2>
+							<securityAns2>${securityAns2}</securityAns2>
+							<securityQuest3>${securityQuest3}</securityQuest3>
+							<securityAns3>${securityAns3}</securityAns3>
+							<fromDate>${fromDate}</fromDate>
+							<toDate>${toDate}</toDate>
+
+							<userName1>${userName1}</userName1>
+							<clientName>${clientName}</clientName>
+							<fromDate>${fromDate}</fromDate>
+							<toDate>${toDate}</toDate>
+							<julyQuarter>${julyQuarter}</julyQuarter>
+							<octQuarter>${octQuarter}</octQuarter>
+							<janQuarter>${janQuarter}</janQuarter>
+							<aprQuarter>${aprQuarter}</aprQuarter>
+
+							<userNameLaptop>${userNameLaptop}</userNameLaptop>
+							<senderTo>${senderTo}</senderTo>
+							<software1>${myob}</software1>
+							<myobcode>${code}</myobcode>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
